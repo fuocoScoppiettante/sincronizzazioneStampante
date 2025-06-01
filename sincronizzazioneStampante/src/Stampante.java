@@ -17,18 +17,19 @@ public class Stampante {
         try{
             semaforo.acquire();
         }catch(InterruptedException e){
-            for(int i=0; i< pagine; i++){
+            for(int i=1; i< pagine; i++){
 
                 System.out.println(" ---------------------" + 
                                     "|                   |" +
                                     "|     PRINTED BY    |" +
                                     "|"+   nome+  "      |" +
                                     "|                   |" +
-                                    "|     foglio        |" +
+                                    "|                   |" +
+                                    "|"+  "foglio"+ i+  "|" +
                                     "|                   |" + 
                                     "---------------------"
                 );
-                }
+            }
                 
         }
         
