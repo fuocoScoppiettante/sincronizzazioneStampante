@@ -7,34 +7,33 @@ public class Stampante {
     private Semaphore semaforo;
 
     public Stampante(String nome, String modello) {
-
         this.nome = nome;
         this.modello = modello;
         semaforo = new Semaphore(1);
     }
 
-    public void Stampa(String nome, int pagine){
-        try{
+    public void Stampa(String nome, int pagine) {
+        try {
             semaforo.acquire();
-        }catch(InterruptedException e){
-            for(int i=1; i< pagine; i++){
-
-                System.out.println(" ---------------------" + 
-                                    "|                   |" +
-                                    "|     PRINTED BY    |" +
-                                    "|"+   nome+  "      |" +
-                                    "|                   |" +
-                                    "|                   |" +
-                                    "|"+  "foglio"+ i+  "|" +
-                                    "|                   |" + 
-                                    "---------------------"
+                System.out.println(
+                    "-------------------------------\n" +
+                    "|\t                      |\n" +
+                    "|\t                      |\n" +
+                    "|\t                      |\n" +
+                    "|\tPRINTED BY            |\n" +
+                    "|\t"+ nome +"\t\t      "+"|\n" +
+                    "|\t                      |\n" +
+                    "|\t                      |\n" +
+                    "|\t"+"foglio "+pagine+"\t"+" "+" "+" "+" "+" "+" "+"|\n" +
+                    "|\t                      |\n" +
+                    "|\t                      |\n" +
+                    "|\t                      |\n" +
+                    "-------------------------------"
                 );
-            }
-                
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } finally {
+            semaforo.release();
         }
-        
-
-        
-        
     }
 }
